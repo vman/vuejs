@@ -7498,31 +7498,19 @@ var App = (function (_super) {
     __extends(App, _super);
     function App() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.msg = 123;
-        _this.helloMsg = 'Hello, ' + _this.propMessage;
+        _this.groups = [{
+                name: "My Group",
+                members: ["vrd", "vrd2"]
+            }, {
+                name: "Another Group",
+                members: ["rvd", "rvd2"]
+            }];
         return _this;
     }
-    App.prototype.mounted = function () {
-        this.greet();
-    };
-    Object.defineProperty(App.prototype, "computedMsg", {
-        get: function () {
-            return 'computed ' + this.msg;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    App.prototype.greet = function () {
-        alert('greeting: ' + this.msg);
-    };
     return App;
 }(vue_1.default));
 App = __decorate([
-    vue_class_component_1.default({
-        props: {
-            propMessage: String
-        }
-    })
+    vue_class_component_1.default
 ], App);
 exports.default = App;
 
@@ -7538,9 +7526,7 @@ var vue_1 = __webpack_require__(0);
 var App_vue_1 = __webpack_require__(2);
 new vue_1.default({
     el: '#app',
-    render: function (h) { return h(App_vue_1.default, {
-        props: { propMessage: 'World' }
-    }); }
+    render: function (h) { return h(App_vue_1.default); }
 });
 
 
@@ -7787,27 +7773,11 @@ module.exports = function normalizeComponent (
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.msg),
-      expression: "msg"
-    }],
-    domProps: {
-      "value": (_vm.msg)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.msg = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('p', [_vm._v("prop: " + _vm._s(_vm.propMessage))]), _vm._v(" "), _c('p', [_vm._v("msg: " + _vm._s(_vm.msg))]), _vm._v(" "), _c('p', [_vm._v("helloMsg: " + _vm._s(_vm.helloMsg))]), _vm._v(" "), _c('p', [_vm._v("computed msg: " + _vm._s(_vm.computedMsg))]), _vm._v(" "), _c('button', {
-    on: {
-      "click": _vm.greet
-    }
-  }, [_vm._v("Greet")])])
+  return _c('div', [_c('ul', _vm._l((_vm.groups), function(group) {
+    return _c('li', [_vm._v("\n      " + _vm._s(group.name) + "\n      "), _c('ul', _vm._l((group.members), function(member) {
+      return _c('li', [_vm._v("\n          " + _vm._s(member) + "\n        ")])
+    }))])
+  }))])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

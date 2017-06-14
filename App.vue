@@ -1,39 +1,53 @@
 <template>
   <div>
-    <input v-model="msg">
-    <p>prop: {{propMessage}}</p>
-    <p>msg: {{msg}}</p>
-    <p>helloMsg: {{helloMsg}}</p>
-    <p>computed msg: {{computedMsg}}</p>
-    <button @click="greet">Greet</button>
+    <ul>
+      <li v-for="group in groups">
+        {{ group.name }}
+        <ul>
+          <li v-for="member in group.members">
+            {{ member }}
+          </li>
+        </ul>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script lang="ts">
+
+interface IGroup {
+  name: string;
+  members: string[];
+}
+
 import Vue from 'vue'
 import Component from 'vue-class-component'
-@Component({
-  props: {
-    propMessage: String
-  }
-})
+
+@Component
 export default class App extends Vue {
-  propMessage: string
+  groups: IGroup[] = [{
+    name: "My Group",
+    members: ["vrd", "vrd2"]
+  }, {
+    name: "Another Group",
+    members: ["rvd", "rvd2"]
+  }]
+
   // inital data
-  msg: number = 123
-  // use prop values for initial data
-  helloMsg: string = 'Hello, ' + this.propMessage
-  // lifecycle hook
-  mounted () {
-    this.greet()
-  }
-  // computed
-  get computedMsg () {
-    return 'computed ' + this.msg
-  }
-  // method
-  greet () {
-    alert('greeting: ' + this.msg)
-  }
+  // msg: number = 123
+  // // use prop values for initial data
+  // //helloMsg: string = 'Hello, ' + this.propMessage
+  // // lifecycle hook
+  // mounted () {
+  //   this.greet()
+  // }
+  // // computed
+  // get computedMsg () {
+  //   return 'computed ' + this.msg
+  // }
+  // // method
+  // greet () {
+  //   alert('greeting: ' + this.msg)
+  // }
 }
 </script>
