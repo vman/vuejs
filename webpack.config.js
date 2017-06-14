@@ -8,7 +8,6 @@ module.exports = {
     extensions: ['.ts', '.js']
   },
   watch:true,
-  
   module: {
     rules: [
       {
